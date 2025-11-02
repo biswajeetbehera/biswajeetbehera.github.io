@@ -1,10 +1,12 @@
-* Global Styles */
+/* 🌟 Global Styles */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: #fff8f0;
   color: #333;
 }
+
+/* Header */
 header {
   background: linear-gradient(to right, #ffcc70, #ff5733);
   color: white;
@@ -12,7 +14,6 @@ header {
   padding: 5rem 1rem 3rem;
   position: relative;
 }
-
 
 /* ✅ Logo inside the header (top-left corner) */
 .header-logo {
@@ -39,51 +40,173 @@ header {
   margin-top: 0.8rem;
 }
 
-/* Responsive logo size */
+/* Responsive header logo */
 @media (max-width: 768px) {
   .header-logo img {
     width: 65px;
   }
 }
 
+/* 🌶 Product Cards */
+.product-card {
+  background: #fff8f0;
+  border: 2px solid #ffcc70;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-card img {
+  width: 150px;
+  border-radius: 8px;
+}
+
+.product-card h2 {
+  color: #ff5733;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Buttons */
+button {
+  background: #ff5733;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #e64a19;
+  transform: scale(1.05);
+}
+
 .cta-button {
-      background: white;
-      color: #ff5733;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 2rem;
-      gap: 2rem;
-    }
-    .feature-card {
-      background: white;
-      border: 2px solid #ffcc70;
-      border-radius: 12px;
-      padding: 1.5rem;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .feature-card h3 {
-      color: #ff5733;
-      margin-bottom: 0.5rem;
-    }
-    .feature-card p {
-      font-size: 0.95rem;
-    }
-    footer {
-      background: #ff5733;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
+  background: white;
+  color: #ff5733;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover {
+  background: #ffe0cc;
+  color: #ff5733;
+}
+
+/* 🌟 Feature Card Hover Animation */
+.feature-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* 🛒 Cart Section */
+#cart-summary {
+  background: #fff;
+  border: 2px solid #ffcc70;
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+#cart-summary h2 {
+  color: #ff5733;
+  margin-bottom: 1rem;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+#cart-items li {
+  background: #fff8f0;
+  border: 1px solid #ffe1c4;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 1rem;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cart-buttons button {
+  background: #ff5733;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cart-buttons button:hover {
+  background: #e64a19;
+}
+
+#cart-total {
+  font-weight: bold;
+  color: #333;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+/* 🧱 Footer */
+footer {
+  background: #ff5733;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+/* 📱 Responsive Tweaks */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .product-card img {
+    width: 120px;
+  }
+
+  #cart-summary {
+    padding: 1.5rem;
+  }
+}

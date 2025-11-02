@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="ChipChaska offers bold Indian potato chips with fast delivery and eco-friendly packaging." />
   <meta name="keywords" content="Indian chips, spicy snacks, potato chips, ChipChaska, masala chips" />
-  <meta name="author" content="ChipChaska Team owned by Smt.Pramila Behera" />
+  <meta name="author" content="ChipChaska Team owned by Smt. Pramila Behera" />
   <title>Shop - ChipChaska</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
     <h1>Shop ChipChaska</h1>
     <p>Explore our bold, crunchy flavors!</p>
   </header>
 
+  <!-- Product Section -->
   <section class="products">
     <div class="product-card">
       <img src="masala.png" alt="Masala Magic Chips" />
@@ -22,7 +24,6 @@
       <p>Spicy, tangy, and totally addictive.</p>
       <p><strong>₹30</strong></p>
       <button onclick="addToCart('Masala Magic', 30)">Add to Cart</button>
-
     </div>
 
     <div class="product-card">
@@ -31,7 +32,6 @@
       <p>Fiery fusion of Indo-Chinese flavors.</p>
       <p><strong>₹35</strong></p>
       <button onclick="addToCart('Schezwan Sizzle', 35)">Add to Cart</button>
-
     </div>
 
     <div class="product-card">
@@ -42,33 +42,96 @@
       <button onclick="addToCart('Mint Masala', 30)">Add to Cart</button>
     </div>
   </section>
+
+  <!-- ✅ Single Clean Cart Section -->
+  <section id="cart-summary">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: ₹0</p>
+
+    <div class="cart-buttons">
+      <button onclick="clearCart()">Clear Cart</button>
+      <button onclick="payNow()">Proceed to Pay</button>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-   function addToCart(product, price) {
-     let cart = JSON.parse(localStorage.getItem('chipCart')) || [];
-     cart.push({ product, price });
-     localStorage.setItem('chipCart', JSON.stringify(cart));
-     updateCartSidebar();
-   }
+    function addToCart(product, price) {
+      let cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+      cart.push({ product, price });
+      localStorage.setItem('chipCart', JSON.stringify(cart));
+      updateCart();
+      alert(`${product} added to cart!`);
+    }
 
-   function updateCartSidebar() {
-     const cart = JSON.parse(localStorage.getItem('chipCart')) || [];
-     const cartList = document.getElementById('cart-items');
-     cartList.innerHTML = '';
-     let total = 0;
+    function updateCart() {
+      const cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+      const cartList = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartList.innerHTML = '';
+      let total = 0;
 
-     cart.forEach(item => {
-       const li = document.createElement('li');
-       li.textContent = `${item.product} - ₹${item.price}`;
-       cartList.appendChild(li);
-       total += item.price;
-     });
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.product} - ₹${item.price}
+          <button style="background:none;border:none;color:#ff5733;cursor:pointer;font-size:1rem;" onclick="removeItem(${index})">✖</button>
+        `;
+        cartList.appendChild(li);
+        total += item.price;
+      });
 
-     document.getElementById('cart-total').textContent = `Total: ₹${total}`;
-   }
+      cartTotal.textContent = `Total: ₹${total}`;
+    }
 
-   window.onload = updateCartSidebar;
- </script>
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('chipCart', JSON.stringify(cart));
+      updateCart();
+    }
 
+    function clearCart() {
+      localStorage.removeItem('chipCart');
+      updateCart();
+    }
+
+    function payNow() {
+      const cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      const options = {
+        key: "YOUR_RAZORPAY_KEY_ID", // Replace this with your actual Razorpay Key ID
+        amount: total * 100,
+        currency: "INR",
+        name: "ChipChaska",
+        description: "Order Payment",
+        image: "chipchaska-logo.png",
+        handler: function (response) {
+          alert("Payment successful! ID: " + response.razorpay_payment_id);
+          clearCart();
+        },
+        prefill: {
+          name: "Customer Name",
+          email: "customer@example.com",
+          contact: "9999999999",
+        },
+        theme: { color: "#ff5733" },
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+
+    window.onload = updateCart;
+  </script>
 
   <footer>
     <p>© 2025 ChipChaska. All rights reserved.</p>
