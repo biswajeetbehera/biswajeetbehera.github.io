@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ChipChaska offers bold Indian potato chips with fast delivery and eco-friendly packaging." />
+  <meta name="keywords" content="Indian chips, spicy snacks, potato chips, ChipChaska, masala chips" />
+  <meta name="author" content="ChipChaska Team owned by Smt.Pramila Behera" />
+  <title>Shop - ChipChaska</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Shop ChipChaska</h1>
+    <p>Explore our bold, crunchy flavors!</p>
+  </header>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="masala.png" alt="Masala Magic Chips" />
+      <h2>Masala Magic</h2>
+      <p>Spicy, tangy, and totally addictive.</p>
+      <p><strong>₹30</strong></p>
+      <button onclick="addToCart('Masala Magic', 30)">Add to Cart</button>
+
+    </div>
+
+    <div class="product-card">
+      <img src="schezwan.png" alt="Schezwan Sizzle Chips" />
+      <h2>Schezwan Sizzle</h2>
+      <p>Fiery fusion of Indo-Chinese flavors.</p>
+      <p><strong>₹35</strong></p>
+      <button onclick="addToCart('Schezwan Sizzle', 35)">Add to Cart</button>
+
+    </div>
+
+    <div class="product-card">
+      <img src="mint.png" alt="Mint Masala Chips" />
+      <h2>Mint Masala</h2>
+      <p>Cool mint meets bold masala.</p>
+      <p><strong>₹30</strong></p>
+      <button onclick="addToCart('Mint Masala', 30)">Add to Cart</button>
+    </div>
+  </section>
+  <script>
+   function addToCart(product, price) {
+     let cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+     cart.push({ product, price });
+     localStorage.setItem('chipCart', JSON.stringify(cart));
+     updateCartSidebar();
+   }
+
+   function updateCartSidebar() {
+     const cart = JSON.parse(localStorage.getItem('chipCart')) || [];
+     const cartList = document.getElementById('cart-items');
+     cartList.innerHTML = '';
+     let total = 0;
+
+     cart.forEach(item => {
+       const li = document.createElement('li');
+       li.textContent = `${item.product} - ₹${item.price}`;
+       cartList.appendChild(li);
+       total += item.price;
+     });
+
+     document.getElementById('cart-total').textContent = `Total: ₹${total}`;
+   }
+
+   window.onload = updateCartSidebar;
+ </script>
+
+
+  <footer>
+    <p>© 2025 ChipChaska. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff8f0;
+  color: #333;
+}
+header {
+  background: linear-gradient(to right, #ffcc70, #ff5733);
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem 3rem;
+  position: relative;
+}
+
+
+/* ✅ Logo inside the header (top-left corner) */
+.header-logo {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+}
+
+.header-logo img {
+  width: 150px;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* ✅ Keep title and tagline centered */
+.header-content h1 {
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+/* Responsive logo size */
+@media (max-width: 768px) {
+  .header-logo img {
+    width: 65px;
+  }
+}
+
+.cta-button {
+      background: white;
+      color: #ff5733;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    .feature-card {
+      background: white;
+      border: 2px solid #ffcc70;
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .feature-card h3 {
+      color: #ff5733;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+    }
+    footer {
+      background: #ff5733;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
